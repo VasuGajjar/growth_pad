@@ -127,12 +127,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Get.find<SharedPreferences>().setString(Constant.spUser, user.toJson());
 
               if (isVerified) {
-                Get.lazyPut(() => UserType.member);
-                Get.lazyPut(() => user);
+                Get.put(UserType.member, permanent: true);
+                Get.put(user, permanent: true);
                 Get.offAll(() => const MemberHome());
               } else {
-                Get.lazyPut(() => UserType.temp);
-                Get.lazyPut(() => user);
+                Get.put(UserType.temp, permanent: true);
+                Get.put(user, permanent: true);
                 Get.offAll(() => const RequestedLogin());
               }
             },
@@ -140,8 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Log.console('Secretary: $user');
               Get.find<SharedPreferences>().setString(Constant.spType, UserType.secretary.toString());
               Get.find<SharedPreferences>().setString(Constant.spUser, user.toJson());
-              Get.lazyPut(() => UserType.secretary);
-              Get.lazyPut(() => user);
+              Get.put(UserType.secretary, permanent: true);
+              Get.put(user, permanent: true);
               Get.offAll(() => const SecretaryHome());
             },
             onFailure: (message) => AppOverlay.showToast(message),

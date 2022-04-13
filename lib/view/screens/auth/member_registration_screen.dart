@@ -167,8 +167,8 @@ class RegistrationScreenState extends State<MemberRegistrationScreen> {
             Log.console('Member: $user');
             Get.find<SharedPreferences>().setString(Constant.spType, UserType.temp.toString());
             Get.find<SharedPreferences>().setString(Constant.spUser, user.toJson());
-            Get.lazyPut(() => UserType.temp);
-            Get.lazyPut(() => user);
+            Get.put(UserType.temp, permanent: true);
+            Get.put(user, permanent: true);
             Get.offAll(() => const RequestedLogin());
           },
           onFailure: AppOverlay.showToast,

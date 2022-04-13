@@ -5,6 +5,7 @@ import 'package:growthpad/data/model/member.dart';
 import 'package:growthpad/theme/text_theme.dart';
 import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/screens/member_home/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../theme/colors.dart';
 import '../../../util/assets.dart';
@@ -65,6 +66,7 @@ class _RequestedLoginState extends State<RequestedLogin> {
     var user = await Get.find<AuthController>().searchMember(Get.find<Member>().id);
 
     if (user != null) {
+      await Get.find<SharedPreferences>().setString(Constant.spType, UserType.member.toString());
       Get.replace(UserType.member);
       Get.replace(user);
       Get.offAll(() => const MemberHome());

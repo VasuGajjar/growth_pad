@@ -48,16 +48,16 @@ class SplashScreen extends StatelessWidget {
 
     if (userType != null && user != null) {
       if (userType == UserType.member.toString()) {
-        Get.lazyPut(() => UserType.member, fenix: true);
-        Get.lazyPut(() => Member.fromJson(user), fenix: true);
+        Get.put(UserType.member, permanent: true);
+        Get.put(Member.fromJson(user), permanent: true);
         Get.offAll(() => const MemberHome());
       } else if (userType == UserType.temp.toString()) {
-        Get.lazyPut(() => UserType.temp, fenix: true);
-        Get.lazyPut(() => Member.fromJson(user), fenix: true);
+        Get.put(UserType.temp, permanent: true);
+        Get.put(Member.fromJson(user), permanent: true);
         Get.offAll(() => const RequestedLogin());
       } else if (userType == UserType.secretary.toString()) {
-        Get.lazyPut(() => UserType.secretary, fenix: true);
-        Get.lazyPut(() => Secretary.fromJson(user), fenix: true);
+        Get.put(UserType.secretary, permanent: true);
+        Get.put(Secretary.fromJson(user), permanent: true);
         Get.offAll(() => const SecretaryHome());
       } else {
         Get.offAll(() => const UserSelectScreen());

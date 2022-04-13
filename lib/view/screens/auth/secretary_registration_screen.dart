@@ -10,6 +10,7 @@ import '../../../controller/auth_controller.dart';
 import '../../../theme/colors.dart';
 import '../../../util/assets.dart';
 import '../../../util/constants.dart';
+import '../secretary_home/home.dart';
 
 class SecretaryRegistrationScreen extends StatefulWidget {
   const SecretaryRegistrationScreen({Key? key}) : super(key: key);
@@ -176,6 +177,9 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
             Log.console('Society: $society');
             Get.find<SharedPreferences>().setString(Constant.spType, UserType.secretary.toString());
             Get.find<SharedPreferences>().setString(Constant.spUser, user.toJson());
+            Get.put(UserType.secretary, permanent: true);
+            Get.put(user, permanent: true);
+            Get.offAll(() => const SecretaryHome());
           },
           onFailure: AppOverlay.showToast,
         )
