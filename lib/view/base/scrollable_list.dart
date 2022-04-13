@@ -5,7 +5,7 @@ import 'package:growthpad/view/base/progressbar.dart';
 
 class ScrollableList<T> extends StatelessWidget {
   final List<T>? data;
-  final bool error;
+  final bool error, reverse;
   final EdgeInsetsGeometry? padding;
   final Widget Function(BuildContext context, int index, T item) builder;
   final Widget Function(BuildContext context)? emptyBuilder;
@@ -14,6 +14,7 @@ class ScrollableList<T> extends StatelessWidget {
     Key? key,
     this.data,
     this.padding,
+    this.reverse = false,
     this.error = false,
     required this.builder,
     this.emptyBuilder,
@@ -41,6 +42,7 @@ class ScrollableList<T> extends StatelessWidget {
     return ListView.builder(
       padding: padding,
       itemCount: data!.length,
+      reverse: reverse,
       itemBuilder: (context, index) => builder(context, index, data![index]),
     );
   }

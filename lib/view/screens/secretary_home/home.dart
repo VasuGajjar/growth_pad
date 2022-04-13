@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:growthpad/data/model/secretary.dart';
 import 'package:growthpad/theme/text_theme.dart';
+import 'package:growthpad/view/screens/chat/chat_screen.dart';
 import 'package:growthpad/view/screens/requestes/request_list.dart';
 import 'package:growthpad/view/screens/secretary_home/pages/dashboard.dart';
 import 'package:growthpad/view/screens/secretary_home/pages/event.dart';
@@ -37,7 +39,9 @@ class _SecretaryHomeState extends State<SecretaryHome> {
         titleTextStyle: TextStyles.h2Bold.copyWith(color: Colors.white),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => ChatScreen(societyId: Get.find<Secretary>().sid));
+            },
             icon: const Icon(Icons.notifications_rounded),
             tooltip: 'Notifications',
           ),
