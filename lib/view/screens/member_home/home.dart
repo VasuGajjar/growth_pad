@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:growthpad/core/controller/auth_controller.dart';
 import 'package:growthpad/core/model/member.dart';
+import 'package:growthpad/helper/overlay.dart';
+import 'package:growthpad/util/constants.dart';
+import 'package:growthpad/view/base/filled_button.dart';
 import 'package:growthpad/view/screens/chat/chat_screen.dart';
+import 'package:growthpad/view/screens/maintenance/member_maintenance.dart';
+import 'package:growthpad/view/screens/splash/user_select_screen.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/text_theme.dart';
@@ -65,6 +71,20 @@ class _MemberHomeState extends State<MemberHome> {
               style: TextStyles.p1Bold,
             ),
             subtitle: Text(Get.find<Member>().email),
+            trailing: FilledButton(
+              text: 'Logout',
+              onClick: () async {
+                AppOverlay.showProgressBar();
+                await Get.find<AuthController>().logout(UserType.member);
+                AppOverlay.closeProgressBar();
+                Get.offAll(() => const UserSelectScreen());
+              },
+              backgroundColor: AppColors.primaryColor.withOpacity(0.3),
+              textColor: AppColors.primaryColor,
+              shadowColor: Colors.transparent,
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+              margin: const EdgeInsets.symmetric(vertical: 12),
+            ),
           ),
           Expanded(
             child: GridView(
@@ -78,7 +98,7 @@ class _MemberHomeState extends State<MemberHome> {
                 HomeItemTile(
                   animationName: Assets.maintenance,
                   title: 'Maintenance',
-                  onTap: () {},
+                  onTap: () => Get.to(() => const MemberMaintenance()),
                 ),
                 HomeItemTile(
                   animationName: Assets.chat,

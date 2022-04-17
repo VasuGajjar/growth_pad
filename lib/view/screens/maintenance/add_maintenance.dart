@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:growthpad/core/controller/maintenance_controller.dart';
+import 'package:growthpad/core/model/maintenance.dart';
+import 'package:growthpad/core/model/secretary.dart';
 import 'package:growthpad/helper/date_converter.dart';
 import 'package:growthpad/theme/colors.dart';
 import 'package:growthpad/theme/text_theme.dart';
@@ -8,6 +11,7 @@ import 'package:growthpad/view/base/edit_text.dart';
 import 'package:growthpad/view/base/filled_button.dart';
 import 'package:growthpad/view/base/resizable_scrollview.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../helper/overlay.dart';
 
@@ -136,7 +140,31 @@ class _AddMaintenanceState extends State<AddMaintenance> {
             text: 'Save',
             margin: const EdgeInsets.all(16),
             padding: const EdgeInsets.all(16),
-            onClick: () {},
+            onClick: () {
+              Get.focusScope?.unfocus();
+              if (validate()) {
+                Maintenance maintenance = Maintenance(
+                  id: const Uuid().v1(),
+                  sid: Get.find<Secretary>().sid,
+                  month: DateConverter.timeToString(selectedDate, output: 'MMMM'),
+                  year: DateConverter.timeToString(selectedDate, output: 'yyyy'),
+                  amount: amount,
+                  penalty: penalty,
+                  deadLine: penaltyDate,
+                  createDate: DateTime.now(),
+                );
+
+                AppOverlay.showProgressBar();
+                Get.find<MaintenanceController>().addMaintenance(
+                  maintenance: maintenance,
+                  onResult: (status, message) {
+                    AppOverlay.closeProgressBar();
+                    AppOverlay.showToast(message);
+                    if (status) Get.back();
+                  },
+                );
+              }
+            },
           )
         ],
       ),
@@ -163,12 +191,17 @@ class _AddMaintenanceState extends State<AddMaintenance> {
   }
 
   bool validate() {
-    if(!(amountKey.currentState?.validate() ?? false)) {
+    if (!(amountKey.currentState?.validate() ?? false)) {
       return false;
     }
 
-    if(amount == 0) {
+    if (amount == 0) {
       AppOverlay.showToast('Enter Valid Amount');
+      return false;
+    }
+
+    if (penaltyDate.isBefore(DateTime.now())) {
+      AppOverlay.showToast('Select Valid Penalty Date');
       return false;
     }
 

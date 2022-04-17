@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:growthpad/core/model/member.dart';
 import 'package:growthpad/core/model/secretary.dart';
+import 'package:growthpad/helper/network_info.dart';
 import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/screens/member_home/home.dart';
 import 'package:growthpad/view/screens/requestes/requested_login.dart';
@@ -17,6 +18,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    NetworkInfo.checkConnectivity(Get.context!);
+
     return Scaffold(
       body: Center(
         child: FutureBuilder<double>(

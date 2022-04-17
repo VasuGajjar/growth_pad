@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../helper/log.dart';
+import '../../util/constants.dart';
 import '../model/member.dart';
 import '../model/secretary.dart';
 import '../model/society.dart';
 import '../repository/auth_repo.dart';
-import '../../helper/log.dart';
-import '../../util/constants.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepository authRepository;
@@ -90,5 +91,17 @@ class AuthController extends GetxController implements GetxService {
 
   Future<Member?> searchMember(String uuid) async {
     return authRepository.searchMember(uuid);
+  }
+
+  Future<void> logout(UserType type) async {
+    try {
+      await Get.find<SharedPreferences>().remove(Constant.spType);
+      await Get.find<SharedPreferences>().remove(Constant.spUser);
+      await Get.delete<UserType>(force: true);
+      if (type == UserType.member || type == UserType.temp) await Get.delete<Member>(force: true);
+      if (type == UserType.secretary) await Get.delete<Secretary>(force: true);
+    } catch (e) {
+      Log.console('AuthController.logout.error: $e');
+    }
   }
 }

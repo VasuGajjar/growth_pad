@@ -12,14 +12,22 @@ class NetworkInfo {
   }
 
   static void checkConnectivity(BuildContext context) {
+    bool first = true;
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       bool isNotConnected = result == ConnectivityResult.none;
-      isNotConnected ? const SizedBox() : ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: isNotConnected ? Colors.red : Colors.green,
-        duration: Duration(seconds: isNotConnected ? 6000 : 3),
-        content: Text(isNotConnected ? 'no_connection' : 'connected', textAlign: TextAlign.center),
-      ));
+      // isNotConnected ? const SizedBox() : ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+      if (first && !isNotConnected) {
+        first = false;
+      } else {
+        if (first) first = false;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: isNotConnected ? Colors.red : Colors.green,
+          duration: Duration(seconds: isNotConnected ? 4000 : 2),
+          content: Text(isNotConnected ? 'No Connection' : 'Connected', textAlign: TextAlign.center),
+        ));
+      }
     });
   }
 }

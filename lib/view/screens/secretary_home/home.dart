@@ -3,15 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:growthpad/core/controller/auth_controller.dart';
 import 'package:growthpad/core/model/secretary.dart';
+import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/theme/colors.dart';
 import 'package:growthpad/theme/text_theme.dart';
 import 'package:growthpad/util/assets.dart';
+import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/base/home_item_tile.dart';
 import 'package:growthpad/view/screens/chat/chat_screen.dart';
 import 'package:growthpad/view/screens/maintenance/maintenance_screen.dart';
-import 'package:growthpad/view/screens/maintenance/view/maintenance_list.dart';
 import 'package:growthpad/view/screens/requestes/request_list.dart';
+import 'package:growthpad/view/screens/splash/user_select_screen.dart';
+
+import '../../base/filled_button.dart';
 
 class SecretaryHome extends StatefulWidget {
   const SecretaryHome({Key? key}) : super(key: key);
@@ -67,6 +72,20 @@ class _SecretaryHomeState extends State<SecretaryHome> {
               style: TextStyles.p1Bold,
             ),
             subtitle: Text(Get.find<Secretary>().email),
+            trailing: FilledButton(
+              text: 'Logout',
+              onClick: () async {
+                AppOverlay.showProgressBar();
+                await Get.find<AuthController>().logout(UserType.secretary);
+                AppOverlay.closeProgressBar();
+                Get.offAll(() => const UserSelectScreen());
+              },
+              backgroundColor: AppColors.primaryColor.withOpacity(0.3),
+              textColor: AppColors.primaryColor,
+              shadowColor: Colors.transparent,
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+              margin: const EdgeInsets.symmetric(vertical: 12),
+            ),
           ),
           Expanded(
             child: GridView(
