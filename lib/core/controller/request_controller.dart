@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:growthpad/data/model/member.dart';
-import 'package:growthpad/data/repository/request_repo.dart';
+
+import '../model/member.dart';
+import '../repository/request_repo.dart';
 
 class RequestController extends GetxController implements GetxService {
   final RequestRepository requestRepository;

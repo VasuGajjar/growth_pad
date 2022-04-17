@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:growthpad/controller/request_controller.dart';
-import 'package:growthpad/data/repository/request_repo.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../controller/auth_controller.dart';
-import '../data/repository/auth_repo.dart';
+import '../core/controller/auth_controller.dart';
+import '../core/controller/request_controller.dart';
+import '../core/repository/auth_repo.dart';
+import '../core/repository/request_repo.dart';
 
 class GlobalBindings extends Bindings {
   @override

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:growthpad/data/model/member.dart';
 import 'package:growthpad/util/constants.dart';
+
+import '../model/member.dart';
 
 class RequestRepository {
   final FirebaseFirestore firestore;

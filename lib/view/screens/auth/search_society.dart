@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:growthpad/view/screens/auth/member_registration_screen.dart';
 
-import '../../../controller/auth_controller.dart';
-import '../../../data/model/society.dart';
+import '../../../core/controller/auth_controller.dart';
+import '../../../core/model/society.dart';
 import '../../base/scrollable_list.dart';
 import '../../base/search_bar.dart';
 

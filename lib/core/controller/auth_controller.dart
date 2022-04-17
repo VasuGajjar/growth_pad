@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:growthpad/data/model/society.dart';
 
-import '../data/model/member.dart';
-import '../data/model/secretary.dart';
-import '../data/repository/auth_repo.dart';
-import '../helper/log.dart';
-import '../util/constants.dart';
+import '../model/member.dart';
+import '../model/secretary.dart';
+import '../model/society.dart';
+import '../repository/auth_repo.dart';
+import '../../helper/log.dart';
+import '../../util/constants.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepository authRepository;

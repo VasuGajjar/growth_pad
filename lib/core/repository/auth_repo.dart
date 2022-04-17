@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:growthpad/data/model/member.dart';
-import 'package:growthpad/data/model/secretary.dart';
-import 'package:growthpad/data/model/society.dart';
-import 'package:growthpad/helper/log.dart';
-import 'package:growthpad/util/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../helper/log.dart';
+import '../../util/constants.dart';
+import '../model/member.dart';
+import '../model/secretary.dart';
+import '../model/society.dart';
 
 class AuthRepository {
   final SharedPreferences preferences;
@@ -234,7 +235,11 @@ class AuthRepository {
           societies.add(Society.fromMap(map));
         }
       } else {
-        var snapshots = await firestore.collection(Constant.cSociety).where(Constant.fsSearchName, isGreaterThanOrEqualTo: query).where(Constant.fsSearchName, isLessThan: query + 'z').get();
+        var snapshots = await firestore
+            .collection(Constant.cSociety)
+            .where(Constant.fsSearchName, isGreaterThanOrEqualTo: query)
+            .where(Constant.fsSearchName, isLessThan: query + 'z')
+            .get();
 
         for (var i = 0; i < snapshots.docs.length; i++) {
           var map = snapshots.docs[i].data();

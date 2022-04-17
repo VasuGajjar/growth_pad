@@ -19,7 +19,7 @@ class LottieWithText extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Lottie.asset(animation, width: 200, height: 200),
+        Lottie.asset(animation, width: 200, height: 200, repeat: false),
         const SizedBox(height: 12),
         Text(
           text,

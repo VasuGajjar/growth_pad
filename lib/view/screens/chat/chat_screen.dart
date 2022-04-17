@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:growthpad/controller/chat_controller.dart';
-import 'package:growthpad/data/model/chat_message.dart';
-import 'package:growthpad/data/model/member.dart';
-import 'package:growthpad/data/model/secretary.dart';
-import 'package:growthpad/data/model/society.dart';
+import 'package:growthpad/core/controller/chat_controller.dart';
+import 'package:growthpad/core/model/chat_message.dart';
+import 'package:growthpad/core/model/member.dart';
+import 'package:growthpad/core/model/secretary.dart';
+import 'package:growthpad/core/model/society.dart';
 import 'package:growthpad/helper/date_converter.dart';
 import 'package:growthpad/theme/colors.dart';
 import 'package:growthpad/theme/text_theme.dart';

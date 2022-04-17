@@ -6,7 +6,7 @@ import 'package:growthpad/view/base/edit_text.dart';
 import 'package:growthpad/view/base/filled_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../controller/auth_controller.dart';
+import '../../../core/controller/auth_controller.dart';
 import '../../../theme/colors.dart';
 import '../../../util/assets.dart';
 import '../../../util/constants.dart';

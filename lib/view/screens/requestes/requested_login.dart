@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:growthpad/controller/auth_controller.dart';
-import 'package:growthpad/data/model/member.dart';
+import 'package:growthpad/core/controller/auth_controller.dart';
+import 'package:growthpad/core/model/member.dart';
 import 'package:growthpad/theme/text_theme.dart';
 import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/screens/member_home/home.dart';

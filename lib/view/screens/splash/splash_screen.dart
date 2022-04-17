@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:growthpad/data/model/member.dart';
-import 'package:growthpad/data/model/secretary.dart';
+import 'package:growthpad/core/model/member.dart';
+import 'package:growthpad/core/model/secretary.dart';
 import 'package:growthpad/util/constants.dart';
-import 'package:growthpad/view/screens/requestes/requested_login.dart';
 import 'package:growthpad/view/screens/member_home/home.dart';
+import 'package:growthpad/view/screens/requestes/requested_login.dart';
 import 'package:growthpad/view/screens/secretary_home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

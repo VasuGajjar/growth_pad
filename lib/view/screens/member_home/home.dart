@@ -1,7 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:growthpad/data/model/member.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:growthpad/core/model/member.dart';
 import 'package:growthpad/view/screens/chat/chat_screen.dart';
+
+import '../../../theme/colors.dart';
+import '../../../theme/text_theme.dart';
+import '../../../util/assets.dart';
+import '../../base/home_item_tile.dart';
 
 class MemberHome extends StatefulWidget {
   const MemberHome({Key? key}) : super(key: key);
@@ -14,9 +22,73 @@ class _MemberHomeState extends State<MemberHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTap: () => Get.to(() => ChatScreen(societyId: Get.find<Member>().sid)),
-        child: const Center(child: Text('Member Home Page')),
+      backgroundColor: AppColors.backgroundColor,
+      appBar: AppBar(
+        shadowColor: AppColors.backgroundColor.withOpacity(0.5),
+        systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent),
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: Image.asset(Assets.growthpadLogo, height: 40, width: 40),
+            ),
+            Text.rich(
+              const TextSpan(text: 'Growth', children: [
+                TextSpan(text: 'Pad', style: TextStyle(color: AppColors.secondaryColor)),
+              ]),
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(CupertinoIcons.gear_solid),
+          )
+        ],
+      ),
+      body: Column(
+        children: [
+          ListTile(
+            leading: CircleAvatar(
+              child: const Icon(
+                CupertinoIcons.person_fill,
+                color: AppColors.backgroundColor,
+                size: 24,
+              ),
+              backgroundColor: AppColors.primaryColor.withOpacity(0.7),
+            ),
+            title: Text(
+              'Hello, ${Get.find<Member>().name}',
+              style: TextStyles.p1Bold,
+            ),
+            subtitle: Text(Get.find<Member>().email),
+          ),
+          Expanded(
+            child: GridView(
+              padding: const EdgeInsets.all(8),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+              ),
+              children: [
+                HomeItemTile(
+                  animationName: Assets.maintenance,
+                  title: 'Maintenance',
+                  onTap: () {},
+                ),
+                HomeItemTile(
+                  animationName: Assets.chat,
+                  title: 'General Chat',
+                  onTap: () => Get.to(() => ChatScreen(societyId: Get.find<Member>().sid)),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

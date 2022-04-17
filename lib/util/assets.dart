@@ -6,4 +6,8 @@ class Assets {
   static const emptyData = 'assets/animations/empty_data.json';
   static const noSearchResults = 'assets/animations/no_search_results.json';
   static const error404 = 'assets/animations/404_error.json';
+  static const chat = 'assets/animations/chat.json';
+  static const maintenance = 'assets/animations/maintenance.json';
+  static const requestList = 'assets/animations/request_list.json';
+  static const requested = 'assets/animations/requested.json';
 }

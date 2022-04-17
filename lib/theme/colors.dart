@@ -6,7 +6,7 @@ class AppColors {
   static const Color secondaryColor = Color(0xFF363E4B);
   static const Color onSecondaryColor = Color(0xFFFFFFFF);
   static const Color cardColor = Color(0xFFFFFFFF);
-  static const Color backgroundColor = Color(0xFFE1E1E1);
+  static const Color backgroundColor = Color(0xFFF1F1F1);
   static const Color textColor = Color(0xFF000000);
   static const Color errorColor = Color(0xFFFF4D4F);
   static const Color warningColor = Color(0xFFFAAD14);
