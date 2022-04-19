@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:growthpad/core/model/maintenance.dart';
 import 'package:growthpad/core/model/member.dart';
 import 'package:growthpad/core/model/payment.dart';
+import 'package:growthpad/core/model/society.dart';
 import 'package:growthpad/core/service/razorpay_service.dart';
 import 'package:growthpad/helper/log.dart';
 import 'package:growthpad/util/constants.dart';
+import 'package:uuid/uuid.dart';
 
 class MaintenanceController extends GetxController implements GetxService {
   FirebaseFirestore firestore;
@@ -56,7 +58,7 @@ class MaintenanceController extends GetxController implements GetxService {
   Future<void> onMaintenancePay({
     required Maintenance maintenance,
     required String userId,
-    required void Function(bool status, String message) onResult,
+    required void Function(bool status, String message, Payment? payment) onResult,
   }) async {
     try {
       bool isLate = DateTime.now().isAfter(maintenance.deadLine);
@@ -69,6 +71,7 @@ class MaintenanceController extends GetxController implements GetxService {
         description: 'Maintenance Payment',
         onPaymentSuccess: (response) async {
           Payment payment = Payment(
+            id: response.orderId ?? response.paymentId ?? response.signature ?? const Uuid().v1(),
             userId: userId,
             maintenanceId: maintenance.id,
             amount: amount,
@@ -77,28 +80,38 @@ class MaintenanceController extends GetxController implements GetxService {
           );
 
           await firestore.collection(Constant.cPayment).add(payment.toMap());
-          onResult(true, 'Payment Successful');
+          onResult(true, 'Payment Successful', payment);
         },
         onPaymentError: (response) {
-          onResult(false, response.message ?? 'Payment Error');
+          onResult(false, response.message ?? 'Payment Error', null);
         },
         onExternalWallet: (response) {},
       );
     } catch (e) {
       Log.console('MaintenanceController.onMaintenancePay.error: $e');
-      onResult(false, 'Something went wrong');
+      onResult(false, 'Something went wrong', null);
     }
   }
 
-  Future<Payment?> findPaymentDetails({required maintenanceId}) async {
+  Future<Payment?> findPaymentDetails({required String maintenanceId, required String userId}) async {
     var query = await firestore
         .collection(Constant.cPayment)
         .where(Constant.fsMaintenanceId, isEqualTo: maintenanceId)
-        .where(Constant.fsUserId, isEqualTo: Get.find<Member>().id)
+        .where(Constant.fsUserId, isEqualTo: userId)
         .get();
 
     if (query.docs.isNotEmpty) {
       return Payment.fromMap(query.docs.first.data());
+    } else {
+      return null;
+    }
+  }
+
+  Future<Society?> findSociety({required String societyId}) async {
+    var query = await firestore.collection(Constant.cSociety).where(Constant.fsId, isEqualTo: societyId).get();
+
+    if (query.docs.isNotEmpty) {
+      return Society.fromMap(query.docs.first.data());
     } else {
       return null;
     }

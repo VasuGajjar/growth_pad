@@ -4,6 +4,7 @@ import 'package:growthpad/helper/date_converter.dart';
 import 'package:growthpad/util/constants.dart';
 
 class Payment {
+  String id;
   String userId;
   String maintenanceId;
   double amount;
@@ -11,6 +12,7 @@ class Payment {
   DateTime paymentTime;
 
   Payment({
+    required this.id,
     required this.userId,
     required this.maintenanceId,
     required this.amount,
@@ -19,6 +21,7 @@ class Payment {
   });
 
   Map<String, dynamic> toMap() => {
+        Constant.fsId: id,
         Constant.fsUserId: userId,
         Constant.fsMaintenanceId: maintenanceId,
         Constant.fsAmount: amount,
@@ -28,6 +31,7 @@ class Payment {
 
   factory Payment.fromMap(Map<String, dynamic> map) {
     return Payment(
+      id: map[Constant.fsId] ?? '',
       userId: map[Constant.fsUserId] ?? '',
       maintenanceId: map[Constant.fsMaintenanceId] ?? '',
       amount: map[Constant.fsAmount] ?? '',

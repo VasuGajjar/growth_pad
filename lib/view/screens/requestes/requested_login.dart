@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:growthpad/core/controller/auth_controller.dart';
 import 'package:growthpad/core/model/member.dart';
+import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/theme/text_theme.dart';
 import 'package:growthpad/util/constants.dart';
+import 'package:growthpad/view/base/resizable_scrollview.dart';
 import 'package:growthpad/view/screens/member_home/home.dart';
+import 'package:growthpad/view/screens/splash/user_select_screen.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../theme/colors.dart';
@@ -32,27 +36,47 @@ class _RequestedLoginState extends State<RequestedLogin> {
             const Text("Pad", style: TextStyle(color: AppColors.secondaryColor, fontWeight: FontWeight.w900)),
           ],
         ),
+        actions: [
+          TextButton(
+            child: const Text('Logout'),
+            onPressed: () async {
+              AppOverlay.showProgressBar();
+              await Get.find<AuthController>().logout(UserType.temp);
+              AppOverlay.closeProgressBar();
+              Get.offAll(() => const UserSelectScreen());
+            },
+          )
+        ],
       ),
       body: RefreshIndicator(
         onRefresh: checkForApproval,
-        child: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
+          child: ResizableScrollView(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: LottieBuilder.asset(
+                  Assets.success,
+                  height: 160,
+                  repeat: false,
+                ),
+              ),
+              const SizedBox(height: 24),
+              const Text(
                 'Requested for Login',
                 style: TextStyles.h2Bold,
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'We have Notified the Society Secretary for reviewing your request.',
                 style: TextStyles.p1Normal,
               ),
-              SizedBox(height: 4),
-              Text(
-                'We will notify you when Secretart accepts your request.',
+              const SizedBox(height: 4),
+              const Text(
+                'We will notify you when Secretary accepts your request.',
                 style: TextStyles.p1Normal,
               ),
             ],

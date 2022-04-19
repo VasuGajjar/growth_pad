@@ -102,6 +102,11 @@ class _SecretaryHomeState extends State<SecretaryHome> {
                   onTap: () => Get.to(() => const MaintenanceScreen()),
                 ),
                 HomeItemTile(
+                  animationName: Assets.event,
+                  title: 'Events',
+                  onTap: () {},
+                ),
+                HomeItemTile(
                   animationName: Assets.requestList,
                   title: 'Pending Requests',
                   onTap: () => Get.to(() => const RequestList()),

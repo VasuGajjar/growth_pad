@@ -91,6 +91,7 @@ class _MemberHomeState extends State<MemberHome> {
               padding: const EdgeInsets.all(8),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
+                // childAspectRatio: 2.1,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
               ),
@@ -99,6 +100,11 @@ class _MemberHomeState extends State<MemberHome> {
                   animationName: Assets.maintenance,
                   title: 'Maintenance',
                   onTap: () => Get.to(() => const MemberMaintenance()),
+                ),
+                HomeItemTile(
+                  animationName: Assets.event,
+                  title: 'Events',
+                  onTap: () {},
                 ),
                 HomeItemTile(
                   animationName: Assets.chat,

@@ -73,7 +73,12 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: TextField(
                       controller: messageController,
                       decoration: const InputDecoration(
-                          filled: true, fillColor: AppColors.backgroundColor, border: InputBorder.none, contentPadding: EdgeInsets.only(left: 24)),
+                        filled: true,
+                        fillColor: AppColors.backgroundColor,
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(left: 24),
+                        hintText: 'Type here...'
+                      ),
                     ),
                   ),
                 ),

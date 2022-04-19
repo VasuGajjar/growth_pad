@@ -30,7 +30,7 @@ class _PendingMemberScreenState extends State<PendingMemberScreen> {
           data: snapshot.data,
           error: snapshot.hasError,
           padding: const EdgeInsets.all(8),
-          builder: (context, index, item) => PendingTile(member: item),
+          builder: (context, index, item) => PendingTile(member: item, maintenanceId: widget.maintenance.id),
         ),
       ),
     );

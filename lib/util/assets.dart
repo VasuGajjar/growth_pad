@@ -9,5 +9,7 @@ class Assets {
   static const chat = 'assets/animations/chat.json';
   static const maintenance = 'assets/animations/maintenance.json';
   static const requestList = 'assets/animations/request_list.json';
-  static const requested = 'assets/animations/requested.json';
+  static const event = 'assets/animations/event.json';
+  static const success = 'assets/animations/success.json';
+  static const fail = 'assets/animations/fail.json';
 }
