@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:growthpad/core/service/notification_service.dart';
 import 'package:growthpad/helper/log.dart';
 import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/view/screens/requestes/requested_login.dart';
@@ -119,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
             type: widget.userType,
             onMemberLogin: (user, isVerified) {
               Log.console('Member: $user');
+              NotificationService.subscribe(user.id, user.sid);
               if (isVerified) {
                 Get.find<SharedPreferences>().setString(Constant.spType, UserType.member.toString());
               } else {
@@ -138,6 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             onSecretaryLogin: (user) {
               Log.console('Secretary: $user');
+              NotificationService.subscribe(user.id, user.sid);
               Get.find<SharedPreferences>().setString(Constant.spType, UserType.secretary.toString());
               Get.find<SharedPreferences>().setString(Constant.spUser, user.toJson());
               Get.put(UserType.secretary, permanent: true);

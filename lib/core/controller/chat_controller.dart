@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:growthpad/core/service/notification_service.dart';
 
+import '../../util/constants.dart';
 import '../model/chat_message.dart';
 import '../model/society.dart';
-import '../../util/constants.dart';
 
 class ChatController {
   static Stream<List<ChatMessage>> getChatMsg(String chatId) {
@@ -19,6 +20,7 @@ class ChatController {
   }
 
   static Future<void> sendMsg(String chatId, ChatMessage message) {
+    NotificationService.sendNotification(topic: chatId, title: message.senderName, body: message.message);
     return FirebaseDatabase.instance.ref().child('chats').child(chatId).push().set(message.toJson());
   }
 

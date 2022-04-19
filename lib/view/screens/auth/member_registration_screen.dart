@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:growthpad/core/service/notification_service.dart';
 import 'package:growthpad/helper/log.dart';
 import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/view/base/edit_text.dart';
@@ -163,8 +164,10 @@ class RegistrationScreenState extends State<MemberRegistrationScreen> {
           societyId: widget.societyId,
           block: block,
           houseNo: houseNo,
-          onSuccess: (user) {
+          onSuccess: (user, secretaryId) {
             Log.console('Member: $user');
+            NotificationService.subscribe(user.id, user.sid);
+            NotificationService.sendNotification(topic: secretaryId, title: 'GrowthPad', body: 'New Member Request');
             Get.find<SharedPreferences>().setString(Constant.spType, UserType.temp.toString());
             Get.find<SharedPreferences>().setString(Constant.spUser, user.toJson());
             Get.put(UserType.temp, permanent: true);

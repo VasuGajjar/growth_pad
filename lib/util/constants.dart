@@ -17,6 +17,8 @@ class Constant {
   static const fsAddress = 'address';
   static const fsTotalHouses = 'totalHouses';
   static const fsSearchName = 'searchName';
+  static const fsAccount = 'account';
+  static const fsIfsc = 'ifsc';
   static const fsMonth = 'month';
   static const fsYear = 'year';
   static const fsAmount = 'amount';
@@ -30,6 +32,8 @@ class Constant {
   // Shared Preferences
   static const spType = 'userType';
   static const spUser = 'user';
+  static const spUidTopic = 'userId';
+  static const spSidTopic = 'societyId';
 }
 
 enum UserType { member, secretary, temp }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:growthpad/core/service/notification_service.dart';
 import 'package:growthpad/helper/log.dart';
 import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/view/base/edit_text.dart';
@@ -27,6 +28,8 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
   GlobalKey<FormState> socNameKey = GlobalKey();
   GlobalKey<FormState> addressKey = GlobalKey();
   GlobalKey<FormState> houseNoKey = GlobalKey();
+  GlobalKey<FormState> accountKey = GlobalKey();
+  GlobalKey<FormState> ifscKey = GlobalKey();
 
   String name = '';
   String email = '';
@@ -35,6 +38,8 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
   String socName = '';
   String address = '';
   String houseNo = '';
+  String account = '';
+  String ifsc = '';
 
   @override
   Widget build(BuildContext context) {
@@ -126,6 +131,20 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
                   onChange: (value) => houseNo = value ?? '',
                   errorText: 'Enter number',
                 ),
+                EditText(
+                  label: 'Account Number',
+                  inputType: TextInputType.number,
+                  formKey: accountKey,
+                  onChange: (value) => account = value ?? '',
+                  errorText: 'Enter account number',
+                ),
+                EditText(
+                  label: 'Ifsc',
+                  inputType: TextInputType.text,
+                  formKey: ifscKey,
+                  onChange: (value) => ifsc = value ?? '',
+                  errorText: 'Enter valid ifsc',
+                ),
                 const SizedBox(height: 16),
                 FilledButton(
                   text: 'Register',
@@ -153,13 +172,15 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
     bool socName = socNameKey.currentState?.validate() ?? false;
     bool address = addressKey.currentState?.validate() ?? false;
     bool houseNo = houseNoKey.currentState?.validate() ?? false;
+    bool account = accountKey.currentState?.validate() ?? false;
+    bool ifsc = ifscKey.currentState?.validate() ?? false;
     bool pwdMatch = this.password == this.confirm;
 
     if (!pwdMatch) {
       AppOverlay.showToast('Password does not match');
     }
 
-    return (name && email && password && confirm && socName && address && houseNo && pwdMatch);
+    return (name && email && password && confirm && socName && address && houseNo && pwdMatch && account && ifsc);
   }
 
   Future<void> register() async {
@@ -172,9 +193,12 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
           socName: socName,
           address: address,
           houseNo: houseNo,
+          account: account,
+          ifsc: ifsc,
           onSuccess: (user, society) {
             Log.console('Secretary: $user');
             Log.console('Society: $society');
+            NotificationService.subscribe(user.id, society.id);
             Get.find<SharedPreferences>().setString(Constant.spType, UserType.secretary.toString());
             Get.find<SharedPreferences>().setString(Constant.spUser, user.toJson());
             Get.put(UserType.secretary, permanent: true);

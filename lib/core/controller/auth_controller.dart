@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:growthpad/core/service/notification_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../helper/log.dart';
@@ -40,17 +41,21 @@ class AuthController extends GetxController implements GetxService {
     required String socName,
     required String address,
     required String houseNo,
+    required String account,
+    required String ifsc,
     required void Function(Secretary user, Society society) onSuccess,
     required void Function(String message) onFailure,
   }) async {
     try {
-      await authRepository.secretaryRegisteration(
+      await authRepository.secretaryRegistration(
         email: email,
         password: password,
         name: name,
         societyName: socName,
         address: address,
         totalHouses: houseNo,
+        account: account,
+        ifsc: ifsc,
         onSuccess: onSuccess,
         onFailure: onFailure,
       );
@@ -67,7 +72,7 @@ class AuthController extends GetxController implements GetxService {
     required String societyId,
     required String block,
     required String houseNo,
-    required void Function(Member user) onSuccess,
+    required void Function(Member user, String secretaryId) onSuccess,
     required void Function(String message) onFailure,
   }) async {
     try {
@@ -95,6 +100,7 @@ class AuthController extends GetxController implements GetxService {
 
   Future<void> logout(UserType type) async {
     try {
+      NotificationService.unsubscribe();
       await Get.find<SharedPreferences>().remove(Constant.spType);
       await Get.find<SharedPreferences>().remove(Constant.spUser);
       await Get.delete<UserType>(force: true);

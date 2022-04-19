@@ -8,13 +8,17 @@ class Society {
   final String address;
   final String totalHouses;
   final String searchName;
-  Society({
-    required this.id,
-    required this.name,
-    required this.address,
-    required this.totalHouses,
-    required this.searchName,
-  });
+  final String account;
+  final String ifsc;
+
+  Society(
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.totalHouses,
+      required this.searchName,
+      required this.account,
+      required this.ifsc});
 
   Society copyWith({
     String? id,
@@ -22,6 +26,8 @@ class Society {
     String? address,
     String? totalHouses,
     String? searchName,
+    String? account,
+    String? ifsc,
   }) {
     return Society(
       id: id ?? this.id,
@@ -29,6 +35,8 @@ class Society {
       address: address ?? this.address,
       totalHouses: totalHouses ?? this.totalHouses,
       searchName: searchName ?? this.searchName,
+      account: account ?? this.account,
+      ifsc: ifsc ?? this.ifsc,
     );
   }
 
@@ -39,6 +47,8 @@ class Society {
       Constant.fsAddress: address,
       Constant.fsTotalHouses: totalHouses,
       Constant.fsSearchName: searchName,
+      Constant.fsAccount: account,
+      Constant.fsIfsc: ifsc,
     };
   }
 
@@ -49,6 +59,8 @@ class Society {
       address: map[Constant.fsAddress] ?? '',
       totalHouses: map[Constant.fsTotalHouses] ?? '',
       searchName: map[Constant.fsSearchName] ?? '',
+      account: map[Constant.fsAccount] ?? '',
+      ifsc: map[Constant.fsIfsc] ?? '',
     );
   }
 
@@ -65,11 +77,16 @@ class Society {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Society && other.id == id && other.name == name && other.address == address && other.totalHouses == totalHouses && other.searchName == searchName;
+    return other is Society &&
+        other.id == id &&
+        other.name == name &&
+        other.address == address &&
+        other.totalHouses == totalHouses &&
+        other.searchName == searchName;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ address.hashCode ^ totalHouses.hashCode ^ searchName.hashCode;
+    return id.hashCode ^ name.hashCode ^ address.hashCode ^ totalHouses.hashCode ^ searchName.hashCode ^ account.hashCode ^ ifsc.hashCode;
   }
 }

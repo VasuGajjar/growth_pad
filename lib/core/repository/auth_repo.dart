@@ -123,13 +123,15 @@ class AuthRepository {
     }
   }
 
-  Future<void> secretaryRegisteration({
+  Future<void> secretaryRegistration({
     required String email,
     required String password,
     required String name,
     required String societyName,
     required String address,
     required String totalHouses,
+    required String account,
+    required String ifsc,
     required void Function(Secretary user, Society society) onSuccess,
     required void Function(String message) onFailure,
   }) async {
@@ -141,7 +143,15 @@ class AuthRepository {
         var societyId = const Uuid().v1();
 
         var user = Secretary(id: userId, name: name, email: email, sid: societyId);
-        var society = Society(id: societyId, name: societyName, address: address, totalHouses: totalHouses, searchName: societyName.toLowerCase());
+        var society = Society(
+          id: societyId,
+          name: societyName,
+          address: address,
+          totalHouses: totalHouses,
+          searchName: societyName.toLowerCase(),
+          account: account,
+          ifsc: ifsc,
+        );
 
         await firestore.collection(Constant.cSecretary).add(user.toMap());
         await firestore.collection(Constant.cSociety).add(society.toMap());
@@ -183,7 +193,7 @@ class AuthRepository {
     required String societyId,
     required String block,
     required String houseNo,
-    required void Function(Member user) onSuccess,
+    required void Function(Member user, String secretaryId) onSuccess,
     required void Function(String message) onFailure,
   }) async {
     try {
@@ -193,7 +203,9 @@ class AuthRepository {
         var userId = auth.user!.uid;
         var user = Member(id: userId, name: name, email: email, sid: societyId, block: block, houseNo: houseNo);
         await firestore.collection(Constant.cTempUser).add(user.toMap());
-        onSuccess(user);
+        var query = await firestore.collection(Constant.cSecretary).where(Constant.fsSocietyId, isEqualTo: societyId).get();
+        String secretaryId = Secretary.fromMap(query.docs.first.data()).id;
+        onSuccess(user, secretaryId);
       } else {
         onFailure('Unable to register');
       }

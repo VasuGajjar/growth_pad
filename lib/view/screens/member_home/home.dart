@@ -102,6 +102,11 @@ class _MemberHomeState extends State<MemberHome> {
                   onTap: () => Get.to(() => const MemberMaintenance()),
                 ),
                 HomeItemTile(
+                  animationName: Assets.notice,
+                  title: 'Notice Board',
+                  onTap: () {},
+                ),
+                HomeItemTile(
                   animationName: Assets.event,
                   title: 'Events',
                   onTap: () {},

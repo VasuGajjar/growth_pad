@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:growthpad/core/controller/maintenance_controller.dart';
 import 'package:growthpad/core/model/maintenance.dart';
 import 'package:growthpad/core/model/secretary.dart';
+import 'package:growthpad/core/service/notification_service.dart';
 import 'package:growthpad/helper/date_converter.dart';
 import 'package:growthpad/theme/colors.dart';
 import 'package:growthpad/theme/text_theme.dart';
@@ -160,7 +161,10 @@ class _AddMaintenanceState extends State<AddMaintenance> {
                   onResult: (status, message) {
                     AppOverlay.closeProgressBar();
                     AppOverlay.showToast(message);
-                    if (status) Get.back();
+                    if (status) {
+                      NotificationService.sendNotification(topic: Get.find<Secretary>().sid, title: 'GrowthPad', body: 'New Maintenance Added');
+                      Get.back();
+                    }
                   },
                 );
               }

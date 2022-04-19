@@ -13,12 +13,17 @@ class RazorpayService {
     required void Function(PaymentFailureResponse response) onPaymentError,
     required void Function(ExternalWalletResponse response) onExternalWallet,
   }) async {
-
     var options = {
       'key': RAZOR_PAY_KEY_ID,
       'amount': amount * 100,
       'name': name,
       'description': description,
+      // 'transfers': [
+      //   {
+      //     'account': account,
+      //     'amount': amount * 100,
+      //   },
+      // ],
     };
 
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, (response) {

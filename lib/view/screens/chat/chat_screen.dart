@@ -84,7 +84,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.send_rounded),
+                icon: const Icon(Icons.send_rounded),
                 onPressed: () {
                   if (messageController.text.trim().isEmpty) return;
 
@@ -129,8 +129,8 @@ class _ChatScreenState extends State<ChatScreen> {
         decoration: BoxDecoration(
           color: isMe ? AppColors.backgroundColor : AppColors.secondaryColor,
           borderRadius: BorderRadius.circular(12).copyWith(
-            bottomLeft: isMe ? null : Radius.circular(0),
-            bottomRight: isMe ? Radius.circular(0) : null,
+            bottomLeft: isMe ? null : const Radius.circular(0),
+            bottomRight: isMe ? const Radius.circular(0) : null,
           ),
         ),
         child: Column(

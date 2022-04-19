@@ -8,6 +8,7 @@ class Assets {
   static const error404 = 'assets/animations/404_error.json';
   static const chat = 'assets/animations/chat.json';
   static const maintenance = 'assets/animations/maintenance.json';
+  static const notice = 'assets/animations/notice.json';
   static const requestList = 'assets/animations/request_list.json';
   static const event = 'assets/animations/event.json';
   static const success = 'assets/animations/success.json';
