@@ -17,6 +17,14 @@ class AppTheme {
   }
 
   static ThemeData darkTheme() {
-    return ThemeData.dark();
+    return ThemeData.dark().copyWith(
+        primaryColor: AppColors.primaryColor,
+        textTheme: GoogleFonts.montserratTextTheme(),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.primaryColor,
+          brightness: Brightness.dark,
+          primary: AppColors.primaryColor,
+          secondary: AppColors.primaryColor,
+        ));
   }
 }

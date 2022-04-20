@@ -32,14 +32,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
           data: snapshot.data?..sort((a, b) => b.createdAt.compareTo(a.createdAt)),
           builder: (context, index, item) => NoticeTile(
             notice: item,
-            onTap: () {
-              Get.dialog(
-                NoticeDetail(
-                  notice: item,
-                  isSecretary: isSecretary,
-                ),
-              );
-            },
+            onTap: () => Get.dialog(NoticeDetail(notice: item, isSecretary: isSecretary)),
           ),
         ),
       ),

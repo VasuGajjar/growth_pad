@@ -12,6 +12,7 @@ import 'package:growthpad/util/assets.dart';
 import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/base/home_item_tile.dart';
 import 'package:growthpad/view/screens/chat/chat_screen.dart';
+import 'package:growthpad/view/screens/event/event_screen.dart';
 import 'package:growthpad/view/screens/maintenance/maintenance_screen.dart';
 import 'package:growthpad/view/screens/notice/notice_screen.dart';
 import 'package:growthpad/view/screens/requestes/request_list.dart';
@@ -110,7 +111,7 @@ class _SecretaryHomeState extends State<SecretaryHome> {
                 HomeItemTile(
                   animationName: Assets.event,
                   title: 'Events',
-                  onTap: () {},
+                  onTap: () => Get.to(() => const EventScreen()),
                 ),
                 HomeItemTile(
                   animationName: Assets.requestList,

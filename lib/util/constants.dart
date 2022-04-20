@@ -7,6 +7,8 @@ class Constant {
   static const cMaintenance = 'maintenance';
   static const cPayment = 'payment';
   static const cNotice = 'notice';
+  static const cEvent = 'event';
+  static const cEventPayment = 'eventPayment';
 
   // Field names
   static const fsId = 'id';
@@ -31,6 +33,9 @@ class Constant {
   static const fsPaymentTime = 'paymentTime';
   static const fsTitle = 'title';
   static const fsDescription = 'description';
+  static const fsIsPaid = 'isPaid';
+  static const fsEventTime = 'eventTime';
+  static const fsEventId = 'eventId';
 
   // Shared Preferences
   static const spType = 'userType';

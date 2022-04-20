@@ -9,6 +9,7 @@ import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/base/filled_button.dart';
 import 'package:growthpad/view/screens/chat/chat_screen.dart';
+import 'package:growthpad/view/screens/event/event_screen.dart';
 import 'package:growthpad/view/screens/maintenance/member_maintenance.dart';
 import 'package:growthpad/view/screens/notice/notice_screen.dart';
 import 'package:growthpad/view/screens/splash/user_select_screen.dart';
@@ -110,7 +111,7 @@ class _MemberHomeState extends State<MemberHome> {
                 HomeItemTile(
                   animationName: Assets.event,
                   title: 'Events',
-                  onTap: () {},
+                  onTap: () => Get.to(() => const EventScreen()),
                 ),
                 HomeItemTile(
                   animationName: Assets.chat,
