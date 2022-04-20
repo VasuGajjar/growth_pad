@@ -93,37 +93,59 @@ class EventController extends GetxController implements GetxService {
     }
   }
 
-  //TODO: Pending Event Payment
   Future<void> payAndJoin({
     required Event event,
     required Member user,
-    required void Function(bool status, String message, EventPayment? payment) onResult,
+    required void Function(bool status, String message) onResult,
   }) async {
     try {
-      await RazorpayService.present(
-        amount: event.amount,
-        name: user.name,
-        description: event.title,
-        onPaymentSuccess: (response) async {
-          // Payment payment = Payment(
-          //   id: response.orderId ?? response.paymentId ?? response.signature ?? const Uuid().v1(),
-          //   userId: userId,
-          //   maintenanceId: maintenance.id,
-          //   amount: amount,
-          //   penalty: isLate,
-          //   paymentTime: DateTime.now(),
-          // );
-          //
-          // await firestore.collection(Constant.cPayment).add(payment.toMap());
-          // onResult(true, 'Payment Successful', payment);
-        },
-        onPaymentError: (response) {
-          onResult(false, response.message ?? 'Payment Error', null);
-        },
-        onExternalWallet: (response) {},
-      );
+      if (event.isPaid) {
+        await RazorpayService.present(
+          amount: event.amount,
+          name: user.name,
+          description: event.title,
+          onPaymentSuccess: (response) async {
+            var status = await _joinEvent(
+              paymentId: response.orderId ?? response.paymentId ?? response.signature ?? const Uuid().v1(),
+              userId: user.id,
+              event: event,
+            );
+            onResult(status, status ? 'Success' : 'Failed');
+          },
+          onPaymentError: (response) {
+            onResult(false, response.message ?? 'Payment Error');
+          },
+          onExternalWallet: (response) {},
+        );
+      } else {
+        var status = await _joinEvent(paymentId: const Uuid().v1(), userId: user.id, event: event);
+        onResult(status, status ? 'Success' : 'Failed');
+      }
     } catch (e) {
       Log.console('EventController.payAndJoin.error: $e');
+    }
+  }
+
+  Future<bool> _joinEvent({
+    required String paymentId,
+    required String userId,
+    required Event event,
+  }) async {
+    try {
+      EventPayment payment = EventPayment(
+        id: paymentId,
+        userId: userId,
+        eventId: event.id,
+        amount: event.isPaid ? event.amount : null,
+        paymentTime: DateTime.now(),
+      );
+
+      await firestore.collection(Constant.cEventPayment).add(payment.toMap());
+      NotificationService.scheduleNotification(title: event.title, body: 'Get Ready, Time for Event', date: event.eventTime);
+      return true;
+    } catch (e) {
+      Log.console('EventController._joinEvent.error: $e');
+      return false;
     }
   }
 }

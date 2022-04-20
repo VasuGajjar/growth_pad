@@ -14,7 +14,6 @@ class AddNotice extends StatefulWidget {
 
 class _AddNoticeState extends State<AddNotice> {
   TextEditingController titleController = TextEditingController(), descriptionController = TextEditingController();
-  FocusNode node = FocusNode();
 
   @override
   Widget build(BuildContext context) {

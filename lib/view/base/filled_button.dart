@@ -4,7 +4,7 @@ import '../../theme/colors.dart';
 
 class FilledButton extends StatelessWidget {
   final String text;
-  final Function() onClick;
+  final Function()? onClick;
   final Color backgroundColor;
   final Color textColor;
   final Color? shadowColor;
@@ -13,7 +13,7 @@ class FilledButton extends StatelessWidget {
   const FilledButton({
     Key? key,
     required this.text,
-    required this.onClick,
+    this.onClick,
     this.shadowColor,
     this.backgroundColor = AppColors.primaryColor,
     this.textColor = AppColors.onPrimaryColor,
