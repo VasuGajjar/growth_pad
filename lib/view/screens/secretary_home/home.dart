@@ -13,6 +13,7 @@ import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/base/home_item_tile.dart';
 import 'package:growthpad/view/screens/chat/chat_screen.dart';
 import 'package:growthpad/view/screens/maintenance/maintenance_screen.dart';
+import 'package:growthpad/view/screens/notice/notice_screen.dart';
 import 'package:growthpad/view/screens/requestes/request_list.dart';
 import 'package:growthpad/view/screens/splash/user_select_screen.dart';
 
@@ -104,7 +105,7 @@ class _SecretaryHomeState extends State<SecretaryHome> {
                 HomeItemTile(
                   animationName: Assets.notice,
                   title: 'Notice Board',
-                  onTap: () {},
+                  onTap: () => Get.to(() => const NoticeScreen()),
                 ),
                 HomeItemTile(
                   animationName: Assets.event,

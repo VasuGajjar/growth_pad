@@ -37,7 +37,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Get.to(() => const AddMaintenance()),
         icon: const Icon(Icons.add_rounded),
-        label: const Text('Add new one'),
+        label: const Text('Add New'),
       ),
     );
   }

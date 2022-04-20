@@ -10,6 +10,7 @@ import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/base/filled_button.dart';
 import 'package:growthpad/view/screens/chat/chat_screen.dart';
 import 'package:growthpad/view/screens/maintenance/member_maintenance.dart';
+import 'package:growthpad/view/screens/notice/notice_screen.dart';
 import 'package:growthpad/view/screens/splash/user_select_screen.dart';
 
 import '../../../theme/colors.dart';
@@ -104,7 +105,7 @@ class _MemberHomeState extends State<MemberHome> {
                 HomeItemTile(
                   animationName: Assets.notice,
                   title: 'Notice Board',
-                  onTap: () {},
+                  onTap: () => Get.to(() => const NoticeScreen()),
                 ),
                 HomeItemTile(
                   animationName: Assets.event,

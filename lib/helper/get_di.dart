@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:growthpad/core/controller/maintenance_controller.dart';
+import 'package:growthpad/core/controller/notice_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/controller/auth_controller.dart';
@@ -38,5 +39,6 @@ class GlobalBindings extends Bindings {
     Get.lazyPut<AuthController>(() => AuthController(authRepository: Get.find()));
     Get.lazyPut<RequestController>(() => RequestController(requestRepository: Get.find()));
     Get.lazyPut<MaintenanceController>(() => MaintenanceController(firestore: Get.find()));
+    Get.lazyPut<NoticeController>(() => NoticeController(firestore: Get.find()));
   }
 }

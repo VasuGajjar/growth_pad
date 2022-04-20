@@ -6,6 +6,7 @@ class Constant {
   static const cTempUser = 'tempUser';
   static const cMaintenance = 'maintenance';
   static const cPayment = 'payment';
+  static const cNotice = 'notice';
 
   // Field names
   static const fsId = 'id';
@@ -28,6 +29,8 @@ class Constant {
   static const fsUserId = 'userId';
   static const fsMaintenanceId = 'maintenanceId';
   static const fsPaymentTime = 'paymentTime';
+  static const fsTitle = 'title';
+  static const fsDescription = 'description';
 
   // Shared Preferences
   static const spType = 'userType';
@@ -37,5 +40,3 @@ class Constant {
 }
 
 enum UserType { member, secretary, temp }
-
-enum Months { January, February, March, April, May, June, July, August, September, November, December }
