@@ -41,7 +41,9 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColors.lightTheme ? AppColors.primaryColor : AppColors.cardColor,
         title: FutureBuilder<Society?>(
           future: ChatController.getSocietyDetails(widget.societyId),
           builder: (context, snapshot) {
@@ -72,13 +74,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     borderRadius: BorderRadius.circular(50),
                     child: TextField(
                       controller: messageController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: AppColors.backgroundColor,
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: 24),
-                        hintText: 'Type here...'
-                      ),
+                      style: TextStyles.p1Normal,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: AppColors.cardColor,
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.only(left: 24),
+                          hintText: 'Type here...'),
                     ),
                   ),
                 ),
@@ -120,6 +122,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget chatMessageTile(ChatMessage message) {
     bool isMe = message.senderId == userId;
+    Color senderBg = AppColors.lightTheme ? AppColors.cardColor : AppColors.offWhite;
+    Color receiverBg = AppColors.lightTheme ? AppColors.secondaryColor : AppColors.cardColor;
 
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
@@ -127,7 +131,7 @@ class _ChatScreenState extends State<ChatScreen> {
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         padding: const EdgeInsets.fromLTRB(12, 6, 12, 4),
         decoration: BoxDecoration(
-          color: isMe ? AppColors.backgroundColor : AppColors.secondaryColor,
+          color: isMe ? senderBg : receiverBg,
           borderRadius: BorderRadius.circular(12).copyWith(
             bottomLeft: isMe ? null : const Radius.circular(0),
             bottomRight: isMe ? const Radius.circular(0) : null,
@@ -139,7 +143,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Text(
               message.senderName,
-              style: TextStyles.p3Bold.copyWith(color: isMe ? AppColors.secondaryColor : AppColors.backgroundColor),
+              style: TextStyles.p3Bold.copyWith(color: isMe ? AppColors.secondaryColor : AppColors.offWhite),
             ),
             Text(
               message.message,

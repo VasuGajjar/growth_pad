@@ -62,7 +62,7 @@ class _AddEventState extends State<AddEvent> {
                 backgroundColor: AppColors.primaryColor.withOpacity(0.2),
                 child: const Icon(CupertinoIcons.calendar_badge_plus, color: AppColors.primaryColor),
               ),
-              title: const Text('Select Date: ', style: TextStyles.p2Normal),
+              title: Text('Select Date: ', style: TextStyles.p2Normal),
               subtitle: Text(DateConverter.timeToString(eventDate, output: 'dd MMM yyyy'), style: TextStyles.p1Bold),
               trailing: FilledButton(
                 text: 'Change',
@@ -83,7 +83,7 @@ class _AddEventState extends State<AddEvent> {
                 backgroundColor: AppColors.primaryColor.withOpacity(0.2),
                 child: const Icon(CupertinoIcons.time, color: AppColors.primaryColor),
               ),
-              title: const Text('Select Time: ', style: TextStyles.p2Normal),
+              title: Text('Select Time: ', style: TextStyles.p2Normal),
               // subtitle: Text(DateConverter.timeToString(eventTime, output: 'hh:mm a'), style: TextStyles.p1Bold),
               subtitle: Text(eventTime.format(context), style: TextStyles.p1Bold),
               trailing: FilledButton(
@@ -101,10 +101,7 @@ class _AddEventState extends State<AddEvent> {
             padding: const EdgeInsets.fromLTRB(18, 24, 18, 4),
             child: Row(
               children: [
-                const Text(
-                  'Paid Event :',
-                  style: TextStyles.p2Normal,
-                ),
+                Text('Paid Event :', style: TextStyles.p2Normal),
                 const Spacer(),
                 CupertinoSwitch(
                   value: isPaid,

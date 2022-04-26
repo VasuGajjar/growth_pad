@@ -54,7 +54,7 @@ class _AddMaintenanceState extends State<AddMaintenance> {
                 backgroundColor: AppColors.primaryColor.withOpacity(0.2),
                 child: const Icon(CupertinoIcons.calendar, color: AppColors.primaryColor),
               ),
-              title: const Text('Select Month & Year: ', style: TextStyles.p2Normal),
+              title: Text('Select Month & Year: ', style: TextStyles.p2Normal),
               subtitle: Text(DateConverter.timeToString(selectedDate, output: 'MMMM yyyy'), style: TextStyles.p1Bold),
               trailing: FilledButton(
                 text: 'Change',
@@ -99,7 +99,7 @@ class _AddMaintenanceState extends State<AddMaintenance> {
                 backgroundColor: AppColors.primaryColor.withOpacity(0.2),
                 child: const Icon(CupertinoIcons.calendar_badge_plus, color: AppColors.primaryColor),
               ),
-              title: const Text('Select Penalty Date: ', style: TextStyles.p2Normal),
+              title: Text('Select Penalty Date: ', style: TextStyles.p2Normal),
               subtitle: Text(DateConverter.timeToString(penaltyDate, output: 'dd MMM yyyy'), style: TextStyles.p1Bold),
               trailing: FilledButton(
                 text: 'Change',

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:growthpad/theme/colors.dart';
+import 'package:growthpad/theme/text_theme.dart';
 import 'package:growthpad/view/screens/auth/member_registration_screen.dart';
 
 import '../../../core/controller/auth_controller.dart';
@@ -20,7 +22,11 @@ class _SearchSocietyState extends State<SearchSociety> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: SearchToolbar(onSearch: (value) => setState(() => query = value))),
+      backgroundColor: AppColors.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: AppColors.appBarColor,
+        title: SearchToolbar(onSearch: (value) => setState(() => query = value)),
+      ),
       body: FutureBuilder<List<Society>>(
         future: Get.find<AuthController>().searchSociety(query),
         builder: (_, snapshot) => ScrollableList<Society>(
@@ -40,14 +46,8 @@ class _SearchSocietyState extends State<SearchSociety> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              society.name,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              society.address,
-              style: const TextStyle(fontSize: 14),
-            ),
+            Text(society.name, style: TextStyles.p1Bold),
+            Text(society.address, style: TextStyles.p2Normal),
           ],
         ),
       ),

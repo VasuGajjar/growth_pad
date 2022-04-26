@@ -68,7 +68,7 @@ class PaymentSuccess extends StatelessWidget {
               ),
               Text(
                 'Payment Successful',
-                style: TextStyles.h3Bold.copyWith(color: AppColors.secondaryColor),
+                style: TextStyles.h3Bold.copyWith(color: AppColors.onSecondaryColor),
               ),
             ],
           ),

@@ -11,7 +11,7 @@ class Progressbar extends StatelessWidget {
       height: 40 + 24,
       width: 40 + 24,
       padding: const EdgeInsets.all(12),
-      decoration: const BoxDecoration(color: AppColors.cardColor, shape: BoxShape.circle),
+      decoration: BoxDecoration(color: AppColors.cardColor, shape: BoxShape.circle),
       child: const SpinKitFadingFour(color: AppColors.primaryColor, size: 35),
     );
   }

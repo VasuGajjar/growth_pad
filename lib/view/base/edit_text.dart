@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:growthpad/theme/text_theme.dart';
 
 class EditText extends StatelessWidget {
   final GlobalKey<FormState>? formKey;
@@ -36,6 +37,7 @@ class EditText extends StatelessWidget {
           autofocus: true,
           keyboardType: inputType,
           textInputAction: TextInputAction.next,
+          style: TextStyles.p1Normal,
           obscureText: obscureText,
           validator: (value) {
             if (value == null || value.trim().isEmpty) {

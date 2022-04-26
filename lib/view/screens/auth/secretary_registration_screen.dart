@@ -44,9 +44,10 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.onPrimaryColor,
-        leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new), color: AppColors.secondaryColor, onPressed: Get.back),
+        backgroundColor: AppColors.cardColor,
+        leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new), color: AppColors.onSecondaryColor, onPressed: Get.back),
         title: Row(
           children: [
             Image.asset(Assets.growthpadLogo, width: 35, height: 35),
@@ -55,9 +56,9 @@ class RegistrationScreenState extends State<SecretaryRegistrationScreen> {
               "Growth",
               style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w900),
             ),
-            const Text(
+            Text(
               "Pad",
-              style: TextStyle(color: AppColors.secondaryColor, fontWeight: FontWeight.w900),
+              style: TextStyle(color: AppColors.onSecondaryColor, fontWeight: FontWeight.w900),
             ),
           ],
         ),

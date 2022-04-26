@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:growthpad/core/controller/auth_controller.dart';
+import 'package:growthpad/core/controller/theme_controller.dart';
 import 'package:growthpad/core/model/secretary.dart';
 import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/theme/colors.dart';
@@ -33,6 +34,7 @@ class _SecretaryHomeState extends State<SecretaryHome> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColors.appBarColor,
         shadowColor: AppColors.backgroundColor.withOpacity(0.5),
         systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent),
         title: Row(
@@ -42,27 +44,34 @@ class _SecretaryHomeState extends State<SecretaryHome> {
               child: Image.asset(Assets.growthpadLogo, height: 40, width: 40),
             ),
             Text.rich(
-              const TextSpan(text: 'Growth', children: [
-                TextSpan(text: 'Pad', style: TextStyle(color: AppColors.secondaryColor)),
+              TextSpan(text: 'Growth', children: [
+                TextSpan(
+                  text: 'Pad',
+                  style: TextStyle(color: AppColors.lightTheme ? AppColors.secondaryColor : AppColors.offWhite),
+                ),
               ]),
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w500,
+                color: AppColors.lightTheme ? AppColors.offWhite : AppColors.primaryColor,
               ),
             ),
           ],
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(CupertinoIcons.gear_solid),
-          )
+            onPressed: () async {
+              await Get.find<ThemeController>().changeTheme();
+              setState(() {});
+            },
+            icon: Icon(AppColors.lightTheme ? CupertinoIcons.moon_fill : CupertinoIcons.sun_min_fill),
+          ),
         ],
       ),
       body: Column(
         children: [
           ListTile(
             leading: CircleAvatar(
-              child: const Icon(
+              child: Icon(
                 CupertinoIcons.person_fill,
                 color: AppColors.backgroundColor,
                 size: 24,
@@ -73,7 +82,7 @@ class _SecretaryHomeState extends State<SecretaryHome> {
               'Hello, ${Get.find<Secretary>().name}',
               style: TextStyles.p1Bold,
             ),
-            subtitle: Text(Get.find<Secretary>().email),
+            subtitle: Text(Get.find<Secretary>().email, style: TextStyles.p2Normal),
             trailing: FilledButton(
               text: 'Logout',
               onClick: () async {

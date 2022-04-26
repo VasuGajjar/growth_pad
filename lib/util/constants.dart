@@ -42,6 +42,7 @@ class Constant {
   static const spUser = 'user';
   static const spUidTopic = 'userId';
   static const spSidTopic = 'societyId';
+  static const spTheme = 'theme';
 }
 
 enum UserType { member, secretary, temp }

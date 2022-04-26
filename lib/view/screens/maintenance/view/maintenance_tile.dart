@@ -24,8 +24,8 @@ class MaintenanceTile extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: Text('${maintenance.month} ${maintenance.year}'),
-        subtitle: Text('Penalty [Rs.${maintenance.penalty}] - ' + DateConverter.timeToString(maintenance.deadLine, output: 'dd MMM yyyy')),
+        title: Text('${maintenance.month} ${maintenance.year}', style: TextStyles.p1Normal),
+        subtitle: Text('Penalty [Rs.${maintenance.penalty}] - ' + DateConverter.timeToString(maintenance.deadLine, output: 'dd MMM yyyy'), style: TextStyles.p2Normal),
         trailing: Text(
           'Rs. ${maintenance.amount}',
           style: TextStyles.p1Bold.copyWith(color: AppColors.primaryColor),

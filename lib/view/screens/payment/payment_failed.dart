@@ -64,7 +64,7 @@ class PaymentFailed extends StatelessWidget {
           const SizedBox(height: 24),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-            child: Text('Reason : $message'),
+            child: Text('Reason : $message', style: TextStyles.p2Normal),
           ),
           titleText('Maintenance Id :', maintenance.id),
           titleText('Society Id :', maintenance.sid),

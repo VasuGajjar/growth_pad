@@ -24,8 +24,8 @@ class PendingTile extends StatelessWidget {
       color: AppColors.cardColor,
       child: ExpansionTile(
         initiallyExpanded: true,
-        title: Text(member.name),
-        subtitle: Text('${member.block} ${member.houseNo}'),
+        title: Text(member.name, style: TextStyles.p1Normal.copyWith(color: AppColors.primaryColor)),
+        subtitle: Text('${member.block} ${member.houseNo}', style: TextStyles.p1Normal.copyWith(color: AppColors.primaryColor)),
         children: [
           FutureBuilder<Payment?>(
               future: Get.find<MaintenanceController>().findPaymentDetails(maintenanceId: maintenanceId, userId: member.id),
@@ -58,10 +58,7 @@ class PendingTile extends StatelessWidget {
           const SizedBox(height: 8),
           Row(
             children: [
-              const Text(
-                'Payment Date :',
-                style: TextStyles.p3Normal,
-              ),
+              Text('Payment Date :', style: TextStyles.p3Normal),
               const Spacer(),
               Text(
                 DateConverter.timeToString(payment.paymentTime, output: 'dd MMM yyyy hh:mm a'),
@@ -72,10 +69,7 @@ class PendingTile extends StatelessWidget {
           const SizedBox(height: 4),
           Row(
             children: [
-              const Text(
-                'Late Penalty :',
-                style: TextStyles.p3Normal,
-              ),
+              Text('Late Penalty :', style: TextStyles.p3Normal),
               const Spacer(),
               Text(
                 payment.penalty ? 'Yes' : 'No',

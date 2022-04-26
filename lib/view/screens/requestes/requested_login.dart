@@ -25,15 +25,15 @@ class _RequestedLoginState extends State<RequestedLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.onPrimaryColor,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.onPrimaryColor,
+        backgroundColor: AppColors.cardColor,
         title: Row(
           children: [
             Image.asset(Assets.growthpadLogo, width: 35, height: 35),
             const SizedBox(width: 8),
             const Text("Growth", style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w900)),
-            const Text("Pad", style: TextStyle(color: AppColors.secondaryColor, fontWeight: FontWeight.w900)),
+            Text("Pad", style: TextStyle(color: AppColors.onSecondaryColor, fontWeight: FontWeight.w900)),
           ],
         ),
         actions: [
@@ -65,17 +65,14 @@ class _RequestedLoginState extends State<RequestedLogin> {
                 ),
               ),
               const SizedBox(height: 24),
-              const Text(
-                'Requested for Login',
-                style: TextStyles.h2Bold,
-              ),
+              Text('Requested for Login', style: TextStyles.h2Bold),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'We have Notified the Society Secretary for reviewing your request.',
                 style: TextStyles.p1Normal,
               ),
               const SizedBox(height: 4),
-              const Text(
+              Text(
                 'We will notify you when Secretary accepts your request.',
                 style: TextStyles.p1Normal,
               ),

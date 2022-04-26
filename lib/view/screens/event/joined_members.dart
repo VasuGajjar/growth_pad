@@ -5,6 +5,7 @@ import 'package:growthpad/core/model/event.dart';
 import 'package:growthpad/core/model/event_payment.dart';
 import 'package:growthpad/core/model/member.dart';
 import 'package:growthpad/theme/colors.dart';
+import 'package:growthpad/theme/text_theme.dart';
 import 'package:growthpad/view/base/progressbar.dart';
 import 'package:growthpad/view/base/scrollable_list.dart';
 
@@ -32,15 +33,15 @@ class JoinedMembers extends StatelessWidget {
               builder: (context, snap) {
                 if (snap.connectionState == ConnectionState.waiting) {
                   return ListTile(
-                    title: const Text('Loading...'),
-                    subtitle: const Text('Please Wait'),
+                    title: Text('Loading...', style: TextStyles.p1Normal),
+                    subtitle: Text('Please Wait', style: TextStyles.p2Normal),
                     trailing: Transform.scale(child: const Progressbar(), scale: 0.6),
                   );
                 }
 
                 return ListTile(
-                  title: Text(snap.data?.name ?? 'Error!'),
-                  subtitle: Text('${snap.data?.block ?? ''} ${snap.data?.houseNo ?? ''}'),
+                  title: Text(snap.data?.name ?? 'Error!', style: TextStyles.p1Normal),
+                  subtitle: Text('${snap.data?.block ?? ''} ${snap.data?.houseNo ?? ''}', style: TextStyles.p2Normal),
                 );
               },
             ),

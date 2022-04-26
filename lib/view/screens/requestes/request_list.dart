@@ -5,6 +5,7 @@ import 'package:growthpad/core/model/member.dart';
 import 'package:growthpad/core/model/secretary.dart';
 import 'package:growthpad/helper/overlay.dart';
 import 'package:growthpad/theme/colors.dart';
+import 'package:growthpad/theme/text_theme.dart';
 import 'package:growthpad/view/base/filled_button.dart';
 import 'package:growthpad/view/base/scrollable_list.dart';
 
@@ -31,8 +32,8 @@ class _RequestListState extends State<RequestList> {
               error: snapshot.hasError,
               data: snapshot.data,
               builder: (context, index, item) => ListTile(
-                title: Text(item.name),
-                subtitle: Text('${item.email}\n${item.block} ${item.houseNo}'),
+                title: Text(item.name, style: TextStyles.p1Normal),
+                subtitle: Text('${item.email}\n${item.block} ${item.houseNo}', style: TextStyles.p2Normal),
                 isThreeLine: true,
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,

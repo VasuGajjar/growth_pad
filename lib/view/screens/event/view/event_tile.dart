@@ -38,8 +38,11 @@ class EventTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              title: Text(event.title),
-              subtitle: Text(DateConverter.timeToString(event.eventTime, output: 'd MMM yyyy, hh:mm a')),
+              title: Text(event.title, style: TextStyles.p1Normal),
+              subtitle: Text(
+                DateConverter.timeToString(event.eventTime, output: 'd MMM yyyy, hh:mm a'),
+                style: TextStyles.p3Normal,
+              ),
               trailing: isSecretary
                   ? const SizedBox.shrink()
                   : FutureBuilder<EventPayment?>(

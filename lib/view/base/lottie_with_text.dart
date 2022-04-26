@@ -23,7 +23,7 @@ class LottieWithText extends StatelessWidget {
         const SizedBox(height: 12),
         Text(
           text,
-          style: TextStyle(color: AppColors.secondaryColor.withOpacity(0.6), fontWeight: FontWeight.bold),
+          style: TextStyle(color: AppColors.onSecondaryColor.withOpacity(0.6), fontWeight: FontWeight.bold),
         ),
       ],
     );

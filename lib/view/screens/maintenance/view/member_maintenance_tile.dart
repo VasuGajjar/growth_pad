@@ -34,7 +34,7 @@ class MemberMaintenanceTile extends StatelessWidget {
       color: AppColors.cardColor,
       child: ExpansionTile(
         initiallyExpanded: true,
-        title: Text('${maintenance.month} ${maintenance.year}'),
+        title: Text('${maintenance.month} ${maintenance.year}', style: TextStyles.p1Normal.copyWith(color: AppColors.primaryColor)),
         children: [
           titleText(title: 'Penalty:', text: 'Rs. ${maintenance.penalty}'),
           titleText(title: 'Penalty Date:', text: DateConverter.timeToString(maintenance.deadLine, output: 'dd MMM yyyy')),

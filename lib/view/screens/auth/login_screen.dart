@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:growthpad/core/service/notification_service.dart';
 import 'package:growthpad/helper/log.dart';
 import 'package:growthpad/helper/overlay.dart';
-import 'package:growthpad/view/screens/requestes/requested_login.dart';
 import 'package:growthpad/view/screens/auth/search_society.dart';
+import 'package:growthpad/view/screens/requestes/requested_login.dart';
 import 'package:growthpad/view/screens/secretary_home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,11 +39,12 @@ class _LoginScreenState extends State<LoginScreen> {
       init: Get.find<AuthController>(),
       builder: (controller) {
         return Scaffold(
+          backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
-            backgroundColor: AppColors.onPrimaryColor,
+            backgroundColor: AppColors.cardColor,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios_new),
-              color: AppColors.secondaryColor,
+              color: AppColors.onSecondaryColor,
               onPressed: Get.back,
             ),
             title: Row(
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Image.asset(Assets.growthpadLogo, width: 35, height: 35),
                 const SizedBox(width: 8),
                 const Text("Growth", style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w900)),
-                const Text("Pad", style: TextStyle(color: AppColors.secondaryColor, fontWeight: FontWeight.w900)),
+                Text("Pad", style: TextStyle(color: AppColors.onSecondaryColor, fontWeight: FontWeight.w900)),
               ],
             ),
           ),
@@ -85,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 FilledButton(
                   text: 'Create New Account',
-                  backgroundColor: AppColors.onPrimaryColor,
+                  backgroundColor: AppColors.cardColor,
                   textColor: AppColors.primaryColor,
                   onClick: () {
                     if (widget.userType == UserType.secretary) {

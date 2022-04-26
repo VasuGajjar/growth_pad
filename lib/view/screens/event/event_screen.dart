@@ -5,6 +5,7 @@ import 'package:growthpad/core/model/event.dart';
 import 'package:growthpad/core/model/member.dart';
 import 'package:growthpad/core/model/secretary.dart';
 import 'package:growthpad/helper/overlay.dart';
+import 'package:growthpad/theme/colors.dart';
 import 'package:growthpad/util/constants.dart';
 import 'package:growthpad/view/base/scrollable_list.dart';
 import 'package:growthpad/view/screens/event/add_event.dart';
@@ -25,7 +26,11 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Events')),
+      backgroundColor: AppColors.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: AppColors.appBarColor,
+        title: const Text('Events'),
+      ),
       body: StreamBuilder<List<Event>>(
         stream: Get.find<EventController>().getEvents(societyId),
         builder: (context, snapshot) => ScrollableList<Event>(
