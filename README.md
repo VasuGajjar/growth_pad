@@ -1,16 +1,26 @@
-# growthpad
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/assets/images/growthpad.png" width="60"/>
 
-Society Maintenance Management System
+# GrowthPad
 
-## Getting Started
+- Society Maintenance Management System
+- One stop solution for all society management issues
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+### Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<p>
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/screenshots/ss0.gif" height="390"/> &#160;
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/screenshots/ss1.jpg" height="390"/> &#160;
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/screenshots/ss2.jpg" height="390"/> &#160;
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/screenshots/ss3.jpg" height="390"/> &#160;
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/screenshots/ss4.jpg" height="390"/> &#160;
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/screenshots/ss5.jpg" height="390"/> &#160;
+<img src="https://github.com/VasuGajjar/growth_pad/blob/main/screenshots/ss6.jpg" height="390"/> &#160;
+</p>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+### Also checkout my other projects:
+
+- [Image Search App](https://github.com/VasuGajjar/ImageSearchApp)
+- [Covid19 Tracker](https://github.com/VasuGajjar/Covid19Tracker)
+- [Flash Chat](https://github.com/VasuGajjar/Flashchat)
