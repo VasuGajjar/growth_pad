@@ -20,7 +20,7 @@ class ThemeController extends GetxController implements GetxService {
     bool lightTheme = !AppColors.lightTheme;
     await preferences.setBool(Constant.spTheme, lightTheme);
     AppColors.lightTheme = lightTheme;
-    update();
+    // update();
   }
 
   ThemeData getTheme() => isLightTheme() ? lightTheme() : darkTheme();

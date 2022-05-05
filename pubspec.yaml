@@ -22,6 +22,7 @@ dependencies:
   google_fonts: ^2.3.1
   lottie: ^1.2.2
   month_picker_dialog: ^0.4.0
+  animated_theme_switcher: ^2.0.6
 
   # Firebase
   firebase_core: ^1.12.0

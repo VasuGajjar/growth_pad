@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class AppColors {
-  static bool lightTheme = false;
+  static bool lightTheme = true;
 
   static const Color green = Color(0xFF19A463);
   static const Color gray = Color(0xFF464E5B);

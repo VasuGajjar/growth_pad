@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:growthpad/core/controller/theme_controller.dart';
@@ -12,20 +13,20 @@ class GrowthPadApp extends StatelessWidget with PortraitModeMixin {
   @override
   Widget build(BuildContext context) {
     portraitModeOnly();
-    return GetBuilder<ThemeController>(
-        init: Get.find<ThemeController>(),
-        builder: (controller) {
-          return GetMaterialApp(
-            title: 'GrowthPad',
-            debugShowCheckedModeBanner: false,
-            defaultTransition: Transition.fadeIn,
-            initialBinding: GlobalBindings(),
-            theme: controller.getTheme(),
-            home: const SplashScreen(),
-            scrollBehavior: const CupertinoScrollBehavior().copyWith(
-              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-            ),
-          );
-        });
+    return ThemeProvider(
+      initTheme: Get.find<ThemeController>().getTheme(),
+      builder: (context, themeData) => GetMaterialApp(
+        title: 'GrowthPad',
+        debugShowCheckedModeBanner: false,
+        defaultTransition: Transition.cupertino,
+        initialBinding: GlobalBindings(),
+        // theme: controller.getTheme(),
+        theme: themeData,
+        home: const SplashScreen(),
+        scrollBehavior: const CupertinoScrollBehavior().copyWith(
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        ),
+      ),
+    );
   }
 }
