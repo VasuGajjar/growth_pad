@@ -13,8 +13,8 @@ import 'package:timezone/timezone.dart' as tz;
 class NotificationService {
   static final instance = FirebaseMessaging.instance;
   static const fcmUrl = 'https://fcm.googleapis.com/fcm/send';
-  static const serverKey =
-      'AAAAJSeh8_o:APA91bELMf61ZOFiu1XABxmcZFUKimekIYqXIFFpb3m0c_XbV7nYUvo6aXgRtk84xtI6au7DpqEAFZhLtAGcuy5u6AR4Tk7Ey5-v84bur83PpTvezejAImRsNOwIaeWvwC9YRBTJ2xDI';
+  // TODO: add your firebase server key
+  static const serverKey ='';
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'growthpad', // id
