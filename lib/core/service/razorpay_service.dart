@@ -2,8 +2,9 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class RazorpayService {
   static final _razorpay = Razorpay();
-  static const RAZOR_PAY_KEY_ID = 'rzp_test_RGE2H2Xwis0Ydo';
-  static const RAZOR_PAY_SECRET_KEY = '1KdMM4UY3EOkjJSA4bD2U5Zn';
+  // TODO: razorpay credentials are required
+  static const RAZOR_PAY_KEY_ID = '';
+  static const RAZOR_PAY_SECRET_KEY = '';
 
   static Future<void> present({
     required double amount,
